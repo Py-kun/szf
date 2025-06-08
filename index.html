@@ -421,17 +421,22 @@
     
     <!-- 添加JavaScript代码 -->
     <script>
-    // 在页面底部的script标签中添加
-    document.getElementById('flip-card-btn').addEventListener('click', function() {
-        document.querySelector('.card').classList.toggle('flipped');
-    });
-    
-    // 为卡片添加点击事件
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.card').addEventListener('click', function() {
+        const card = document.querySelector('.card');
+        // PC端点击
+        card.addEventListener('click', function() {
             this.classList.toggle('flipped');
         });
+        // 移动端触摸
+        card.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // 防止触发点击两次
+            this.classList.toggle('flipped');
+        });
+        // 按钮点击
+        document.getElementById('flip-card-btn').addEventListener('click', function() {
+            card.classList.toggle('flipped');
+        });
     });
-    </script>
+</script>
 </body>
 </html>
