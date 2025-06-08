@@ -57,17 +57,21 @@
             height: 400px;
         }
 
+        /* 修改卡片样式，移除浮动动画 */
         .card {
             position: relative;
             width: 100%;
             height: 100%;
             transform-style: preserve-3d;
             transition: transform 0.8s;
-            animation: float 3s ease-in-out infinite;
+            /* 移除浮动动画 */
+            /* animation: float 3s ease-in-out infinite; */
+            cursor: pointer;
         }
-
-        .card:hover {
-            transform: rotateY(180deg);
+        
+        /* 确保flipped类的样式不受其他影响 */
+        .card.flipped {
+            transform: rotateY(180deg) !important;
         }
 
         .card-front, .card-back {
@@ -410,6 +414,24 @@
         btn.addEventListener('mouseout', () => {
             btn.style.transform = '';
         });
+    </script>
+
+    <!-- 在card-container前添加一个按钮 -->
+    <button id="flip-card-btn" class="btn" style="margin-bottom: 20px;">查看个人简介</button>
+    
+    <!-- 添加JavaScript代码 -->
+    <script>
+    // 在页面底部的script标签中添加
+    document.getElementById('flip-card-btn').addEventListener('click', function() {
+        document.querySelector('.card').classList.toggle('flipped');
+    });
+    
+    // 为卡片添加点击事件
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.card').addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+    });
     </script>
 </body>
 </html>
