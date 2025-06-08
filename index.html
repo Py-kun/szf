@@ -421,21 +421,22 @@
     
     <!-- 添加JavaScript代码 -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const card = document.querySelector('.card');
-        // PC端点击
-        card.addEventListener('click', function() {
-            this.classList.toggle('flipped');
-        });
-        // 移动端触摸
-        card.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // 防止触发点击两次
-            this.classList.toggle('flipped');
-        });
-        // 按钮点击
-        document.getElementById('flip-card-btn').addEventListener('click', function() {
-            card.classList.toggle('flipped');
-        });
+    document.addEventListener('DOMContentLoaded', function () {
+        var card = document.querySelector('.card');
+        if (card) {
+            card.addEventListener('click', function () {
+                this.classList.toggle('flipped');
+            });
+            card.addEventListener('touchstart', function () {
+                this.classList.toggle('flipped');
+            });
+        }
+        var btn = document.getElementById('flip-card-btn');
+        if (btn && card) {
+            btn.addEventListener('click', function () {
+                card.classList.toggle('flipped');
+            });
+        }
     });
 </script>
 </body>
